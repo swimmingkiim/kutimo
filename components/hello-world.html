@@ -1,0 +1,15 @@
+<style>
+    div {
+        color: purple;
+    }
+</style>
+
+<div id="element">hello HTML^^</div>
+
+<script>
+    (function() {
+        return function main(root) {
+        root.querySelector("#element").addEventListener("click", () => console.log("cool"))
+    } 
+    })()
+</script>
