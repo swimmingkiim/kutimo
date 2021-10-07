@@ -1,0 +1,21 @@
+<style>
+    section {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+
+<section id="row">
+    <slot></slot>
+</section>
+
+<script type="module">
+    (function() {
+        return function main(root, props) {
+            const element = root.querySelector("#row");
+            Object.keys(props).forEach((attr) => {
+                element.style[attr] = props[attr];
+            }) 
+        } 
+    })()
+</script>

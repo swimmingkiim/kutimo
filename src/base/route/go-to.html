@@ -21,9 +21,7 @@
         return function main(root, props) {
         const aTag = root.querySelector("#go-to");
         const pageURL = props.to !== "index.html" ? `${BASE_PREFIX}/${props.to}` : `/${props.to}`;
-        console.log(pageURL)
         aTag.setAttribute("href", pageURL);
-        console.log(aTag.getAttribute("href"))
         aTag.innerText = props._innerHTML;
         aTag.addEventListener("click", async (evt) => {
             evt.preventDefault();

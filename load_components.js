@@ -1,3 +1,4 @@
+
 const getAttributesObject = (element) => {
     let result = {};
     Array.from(element.attributes)
@@ -15,6 +16,9 @@ const getComponent = (htmlStr) => {
         this.template.innerHTML = htmlStr;
         this.root = this.attachShadow({mode: "open"});
         this.root.appendChild(this.template.content);
+        if (this.root.querySelector("link[rel=hcj-import]")) {
+            registerCustomElementAll(this.root);
+        }
         const js = eval(this.root.querySelector("script").innerText);
         const props = { ...getAttributesObject(this), _innerHTML: this.innerHTML };
         js(this.root, props);
@@ -27,22 +31,26 @@ const registerCustomElement = (tagName, htmlString) => {
     customElements.define(tagName, elClass);
 }
 
-const registerCustomElementAll = () => {
-    const importList = document.querySelectorAll("link[rel=hcj-import]");
+const registerCustomElementAll = (root) => {
+    const importList = root.querySelectorAll("link[rel=hcj-import]");
     Array.prototype.forEach.call(importList, async(el) => {
         const path = el.href;
         const fileName = path.match(/([a-z|\-]+\.html)$/)[0].replace(".html", "");
+        if (customElements.get(fileName)) {
+            return;
+        }
         const result = await fetch(path);
         registerCustomElement(fileName, await result.text());
     })
 }
 
 const main = () => {
-    registerCustomElementAll();
+    registerCustomElementAll(document);
 }
 
 main();
 
+export default registerCustomElementAll;
 
 // const getUniqueTagNames = (parentNode, nodeList) => {
 //     if (!parentNode.children) return ;

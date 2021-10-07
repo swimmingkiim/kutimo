@@ -1,0 +1,22 @@
+<style>
+    section {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+    }
+</style>
+
+<section id="column">
+    <slot></slot>
+</section>
+
+<script type="module">
+    (function() {
+        return function main(root, {_innerHTML, ...props}) {
+            const element = root.querySelector("#column");
+            Object.keys(props).forEach((attr) => {
+                element.style[attr] = props[attr];
+            })       
+        } 
+    })()
+</script>

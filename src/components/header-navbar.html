@@ -1,0 +1,26 @@
+<head>
+    <link rel="hcj-import" href="/src/base/layout/s-column.html">
+    <link rel="hcj-import" href="/src/components/hello-world.html">
+</head>
+
+<style>
+
+</style>
+
+<header>
+    <s-column>
+        <hello-world></hello-world>
+        <span>menu 1</span>
+        <span>menu 2</span>
+        <span>menu 3</span>
+    </s-column>
+</header>
+
+<script type="module">
+
+    (function() {
+        return async function main(root, props) {
+            console.log("header loaded");
+        } 
+    })()
+</script>
