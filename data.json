@@ -1,0 +1,7 @@
+{
+    "name": "swimmingkiim's blog",
+    "author": "swimmingkiim",
+    "home-entry": "/index.html",
+    "post-entry": "/src/pages/post.html",
+    "not-found-redirection": "/src/pages/404.html"
+}

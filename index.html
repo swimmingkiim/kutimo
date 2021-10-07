@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>web component test</title>
-    <link rel="hcj-import" href="components/hello-world.html">
+    <title>Home</title>
+    <link rel="hcj-import" href="./src/components/hello-world.html">
+    <link rel="hcj-import" href="./src/base/route/go-to.html">
 </head>
 <body>
     <div>
         outside
         <hello-world></hello-world>
+        <go-to to="about.html">ABOUT</go-to>
+        <go-to to="post.html">POST</go-to>
+        <go-to to="404.html">404</go-to>
     </div>
-    <script type="module" src="main.js"></script>
-    <script type="module" src="test.js"></script>
+    <script type="module" src="init.js"></script>
+    <script type="module" src="load_components.js"></script>
 </body>
 </html>

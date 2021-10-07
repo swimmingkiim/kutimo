@@ -1,0 +1,46 @@
+<style>
+    div {
+        color: orange;
+    }
+</style>
+
+<a id="go-to" href="/index.html">placeholder</a>
+
+<script type="module">
+
+    const _utils = import("/_util.js");
+
+    const BASE_PREFIX = "/src/pages";
+
+    async function redirectTo404() {
+        const data = await(await _utils).getFileContentInJSON("/data.json");
+        window.location.href = data["not-found-redirection"];
+    }
+
+    (function() {
+        return function main(root, props) {
+        const aTag = root.querySelector("#go-to");
+        const pageURL = props.to !== "index.html" ? `${BASE_PREFIX}/${props.to}` : `/${props.to}`;
+        console.log(pageURL)
+        aTag.setAttribute("href", pageURL);
+        console.log(aTag.getAttribute("href"))
+        aTag.innerText = props._innerHTML;
+        aTag.addEventListener("click", async (evt) => {
+            evt.preventDefault();
+            console.log(`move to : ${pageURL}`);
+            try {
+                const result = await (await _utils).getFileContentInString(pageURL);
+                console.log(result)
+                if (result === null) {
+                    redirectTo404()
+                } else {
+                    window.location.href = pageURL;
+                }
+            } catch(error) {
+                redirectTo404()
+            }
+            
+        })
+    } 
+    })()
+</script>
