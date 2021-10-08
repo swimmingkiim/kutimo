@@ -1,10 +1,11 @@
 {
   "name": "test-web-component",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "convert": "node js/convert_md_to_post.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/swimmingkiim/web-components-system/issues"
   },
-  "homepage": "https://github.com/swimmingkiim/web-components-system#readme"
+  "homepage": "https://github.com/swimmingkiim/web-components-system#readme",
+  "dependencies": {
+    "remark": "^14.0.1",
+    "remark-html": "^15.0.0"
+  }
 }

@@ -4,5 +4,20 @@
     "entry": "/index.html",
     "home-entry": "/src/pages/p-home.html",
     "post-entry": "/src/pages/p-post.html",
-    "not-found-redirection": "/src/pages/p-404.html"
+    "not-found-redirection": "/src/pages/p-404.html",
+    "post-tree": {
+        "_current": [
+            "/post/test.html"
+        ],
+        "tech": {
+            "_current": [
+                "/post/tech/sample-tech.html"
+            ]
+        },
+        "vlog": {
+            "_current": [
+                "/post/vlog/sample-vlog.html"
+            ]
+        }
+    }
 }
