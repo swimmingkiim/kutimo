@@ -8,8 +8,11 @@
 
 <script>
     (function() {
-        return function main(root, props) {
-            root.querySelector("#element").addEventListener("click", () => console.log("cool"))
+        return function main(root, props, store) {
+            root.querySelector("#element").addEventListener("click", () => {
+                store.data = { ...store.data, count: store.data.count + 1 }
+                console.log("increment : ", store.data);
+            })
         } 
     })()
 </script>

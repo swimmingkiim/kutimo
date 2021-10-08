@@ -4,35 +4,41 @@
     }
 </style>
 
-<a id="go-to" href="/index.html">placeholder</a>
+<a id="go-to" href="/index.html#page=">placeholder</a>
 
 <script type="module">
 
     const _utils = import("/_util.js");
+    const Page = import ("/load_page.js");
 
-    const BASE_PREFIX = "/src/pages";
+    const PATH_PREFIX = "/src/pages/"
+    const BASE_PREFIX = "/index.html#page=";
 
     async function redirectTo404() {
         const data = await(await _utils).getFileContentInJSON("/data.json");
-        window.location.href = data["not-found-redirection"];
+        const fileName = (await _utils).getFileName(data["not-found-redirection"]);
+        window.location.href = `${BASE_PREFIX}${fileName}`;
+        await (await Page).loadPage(data["not-found-redirection"]);
     }
 
     (function() {
         return function main(root, props) {
         const aTag = root.querySelector("#go-to");
-        const pageURL = props.to !== "index.html" ? `${BASE_PREFIX}/${props.to}` : `/${props.to}`;
+        const filePath = `${PATH_PREFIX}${props.to}`;
+        const pageURL = `${BASE_PREFIX}${props.to.replace(".html", "")}`;
         aTag.setAttribute("href", pageURL);
         aTag.innerText = props._innerHTML;
         aTag.addEventListener("click", async (evt) => {
             evt.preventDefault();
             console.log(`move to : ${pageURL}`);
             try {
-                const result = await (await _utils).getFileContentInString(pageURL);
+                const result = await (await _utils).getFileContentInString(filePath);
                 console.log(result)
                 if (result === null) {
                     redirectTo404()
                 } else {
                     window.location.href = pageURL;
+                    await (await Page).loadPage(filePath);
                 }
             } catch(error) {
                 redirectTo404()

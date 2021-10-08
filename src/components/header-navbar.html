@@ -10,8 +10,8 @@
 <header>
     <s-column>
         <hello-world></hello-world>
-        <span>menu 1</span>
-        <span>menu 2</span>
+        <span id="menu1">menu 1</span>
+        <span id="store-value">menu 2</span>
         <span>menu 3</span>
     </s-column>
 </header>
@@ -19,8 +19,15 @@
 <script type="module">
 
     (function() {
-        return async function main(root, props) {
+        return async function main(root, props, store) {
             console.log("header loaded");
+            root.querySelector("#menu1").addEventListener("click", () => {
+                store.data = {...store.data, count: store.data.count - 1};
+                console.log("decrement : ", store.data);
+            })
+            store.addSubscribe((store) => {
+                root.querySelector("#store-value").innerText = store.data.count;
+            })
         } 
     })()
 </script>

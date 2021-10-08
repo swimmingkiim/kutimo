@@ -1,7 +1,8 @@
 {
     "name": "swimmingkiim's blog",
     "author": "swimmingkiim",
-    "home-entry": "/index.html",
+    "entry": "/index.html",
+    "home-entry": "/src/pages/p-home.html",
     "post-entry": "/src/pages/p-post.html",
     "not-found-redirection": "/src/pages/p-404.html"
 }

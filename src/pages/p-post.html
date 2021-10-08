@@ -1,18 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="hcj-import" href="../components/hello-world.html">
-    <link rel="hcj-import" href="../base/route/r-go-to.html">
-    <title>Post</title>
+    <link rel="hcj-import" href="/src/components/hello-world.html">
+    <link rel="hcj-import" href="/src/base/route/r-go-to.html">
 </head>
-<body>
+
+<div>
     <p>this is post page</p>
     <hello-world></hello-world>
-    <r-go-to to="index.html">go to HOME</r-go-to>
-    <script type="module" src="../../init.js"></script>
-    <script type="module" src="../../load_components.js"></script>
-</body>
-</html>
+    <p>store count is <span id="store-value">undefined</span></p>
+    <r-go-to to="p-home.html">go to HOME</r-go-to>
+</div>
+
+<script type="module">
+    (function() {
+        return function main(root, props, store) {
+            console.log("page : post")
+            store.addSubscribe((store) => {
+                root.querySelector("#store-value").innerText = store.data.count;
+            })
+        }
+    })()
+</script>
