@@ -1,5 +1,5 @@
 import { registerCustomElement } from "./load_components.js";
-import { getFileContentInString, getFileName } from "./_util.js";
+import { getFileContentInString, getFileName } from "/js/_util.js";
 
 export const clearPage = () => {
     const page = document.querySelector("#page");
@@ -11,10 +11,8 @@ export const clearPage = () => {
 }
 
 export const loadPage = async(filePath) => {
-    console.log("gg:", filePath)
     const fileName = getFileName(filePath);
     const fileContent = await getFileContentInString(filePath);
-    console.log(customElements.get(fileName))
     if (!customElements.get(fileName)) {
         await registerCustomElement(filePath, fileName);
     }

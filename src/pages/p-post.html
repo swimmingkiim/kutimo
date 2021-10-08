@@ -10,10 +10,10 @@
     <r-go-to to="p-home.html">go to HOME</r-go-to>
 </div>
 
-<script type="module">
+<script name="main" type="module">
+
     (function() {
         return function main(root, props, store) {
-            console.log("page : post")
             store.addSubscribe((store) => {
                 root.querySelector("#store-value").innerText = store.data.count;
             })

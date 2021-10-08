@@ -6,9 +6,10 @@
 
 <div id="element">hello HTML^^</div>
 
-<script>
+<script name="main" type="module">
     (function() {
-        return function main(root, props, store) {
+        return function main(root, props, store, passDownObject) {
+            console.log(passDownObject);
             root.querySelector("#element").addEventListener("click", () => {
                 store.data = { ...store.data, count: store.data.count + 1 }
                 console.log("increment : ", store.data);

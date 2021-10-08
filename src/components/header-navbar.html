@@ -8,18 +8,18 @@
 </style>
 
 <header>
+    <hello-world></hello-world>
     <s-column>
-        <hello-world></hello-world>
         <span id="menu1">menu 1</span>
         <span id="store-value">menu 2</span>
         <span>menu 3</span>
     </s-column>
 </header>
 
-<script type="module">
+<script name="main" type="module">
 
     (function() {
-        return async function main(root, props, store) {
+        return function main(root, props, store) {
             console.log("header loaded");
             root.querySelector("#menu1").addEventListener("click", () => {
                 store.data = {...store.data, count: store.data.count - 1};
@@ -28,6 +28,9 @@
             store.addSubscribe((store) => {
                 root.querySelector("#store-value").innerText = store.data.count;
             })
+            return {
+                sample: "coool"
+            }
         } 
     })()
 </script>

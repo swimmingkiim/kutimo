@@ -6,10 +6,10 @@
 
 <a id="go-to" href="/index.html#page=">placeholder</a>
 
-<script type="module">
+<script name="main" type="module">
 
-    const _utils = import("/_util.js");
-    const Page = import ("/load_page.js");
+    const _utils = import("/js/_util.js");
+    const Page = import ("/js/load_page.js");
 
     const PATH_PREFIX = "/src/pages/"
     const BASE_PREFIX = "/index.html#page=";
@@ -33,7 +33,6 @@
             console.log(`move to : ${pageURL}`);
             try {
                 const result = await (await _utils).getFileContentInString(filePath);
-                console.log(result)
                 if (result === null) {
                     redirectTo404()
                 } else {
@@ -41,6 +40,7 @@
                     await (await Page).loadPage(filePath);
                 }
             } catch(error) {
+                console.error(error);
                 redirectTo404()
             }
             
