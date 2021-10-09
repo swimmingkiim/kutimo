@@ -63,9 +63,16 @@
     }
 
     (function() {
-        return function main(root, props, store, passDown) {
+        return function main(root, props, store, passDown, cache) {
             const containerEl = root.querySelector("#link-container");
+            if (cache["sidebar-nav"]) {
+                containerEl.innerHTML = cache["sidebar-nav"].innerHTML;
+                return;
+            }
             appendLinksToContainer(containerEl, "/data.json");
+            cache.setCache((prevCache) => {
+                return { ...prevCache, "sidebar-nav": containerEl.innerHTML };
+            })
         }
     })()
 </script>

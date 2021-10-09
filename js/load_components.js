@@ -1,4 +1,4 @@
-import { store } from "./init_store.js";
+import { store, cache } from "./init_store.js";
 import { getFileName, getFileContentInString } from "./_util.js";
 
 export const loadComponent = async(filePath, payload) => {
@@ -33,7 +33,7 @@ const getComponent = (htmlStr, _payload) => {
             const js = script ? eval(script.innerText) : () => null;
             const props = { ...getAttributesObject(this), _innerHTML: this.innerHTML, ...(this.payload.props ? this.payload.props : {}) };
             const passDown = this.payload.passDown ? this.payload.passDown : null;
-            const objToPassDown = js(this.root, props, store, passDown);
+            const objToPassDown = js(this.root, props, store, passDown, cache);
             if (this.root.querySelector("link[rel=hcj-import]")) {
                 registerCustomElementAll(this.root, objToPassDown);
             }
