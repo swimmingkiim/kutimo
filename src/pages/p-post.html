@@ -1,13 +1,25 @@
 <head>
-    <link rel="hcj-import" href="/src/components/hello-world.html">
+    <link rel="hcj-import" href="/src/components/blog-layout.html">
+    <link rel="hcj-import" href="/src/base/layout/s-row.html">
+    <link rel="hcj-import" href="/src/base/layout/s-container.html">
     <link rel="hcj-import" href="/src/base/route/r-go-to.html">
 </head>
 
-<div>
-    <p>this is post page</p>
-    <r-go-to to="p-home.html">go to HOME</r-go-to>
-    <div id="md-container"></div>
-</div>
+<style>
+    p {
+        width: 100%;
+        text-align: right;
+    }
+</style>
+
+<blog-layout>
+    <s-container slot="content">
+        <p>
+            <r-go-to to="p-home.html">go to HOME</r-go-to>
+        </p>
+        <s-container width="100%" height="100%" id="md-container"></s-container>
+    </s-container>
+</blog-layout>
 
 <script name="main" type="module">
 

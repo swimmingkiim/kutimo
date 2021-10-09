@@ -1,6 +1,10 @@
 <style>
-    div {
-        color: orange;
+    a {
+        text-decoration: none;
+        font-weight: 500;
+    }
+    a:hover {
+        cursor: pointer;
     }
     ::slotted(*) {
         width: 100%;
@@ -34,7 +38,7 @@
             pageURL = `${pageURL}#post=${props.post.replace(".html", "")}`;
         }
         aTag.setAttribute("href", pageURL);
-        aTag.innerText = props._innerHTML;
+        aTag.innerHTML = props._innerHTML;
         aTag.addEventListener("click", async (evt) => {
             evt.preventDefault();
             console.log(`move to : ${pageURL}`);
