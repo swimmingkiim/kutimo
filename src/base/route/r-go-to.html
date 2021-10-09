@@ -11,7 +11,6 @@
 <script name="main" type="module">
 
     const _utils = import("/js/_util.js");
-    const InitPage = import ("/js/init_page.js");
 
     const PATH_PREFIX = "/src/pages/";
     const BASE_PREFIX = "/index.html#page=";
@@ -19,7 +18,7 @@
     const redirectTo404 = async() => {
         const data = await(await _utils).getFileContentInJSON("/data.json");
         const fileName = (await _utils).getFileName(data["not-found-redirection"]);
-        await (await InitPage).setPage(`${BASE_PREFIX}${fileName}`);
+        window.location.href = `${BASE_PREFIX}${fileName}`;
     }
 
     (function() {
@@ -28,7 +27,7 @@
         const filePath = `${PATH_PREFIX}${props.to}`;
         let pageURL = `${BASE_PREFIX}${props.to.replace(".html", "")}`;
         if (props.post) {
-            pageURL = `${pageURL}&post=${props.post.replace(".html", "")}`;
+            pageURL = `${pageURL}#post=${props.post.replace(".html", "")}`;
         }
         aTag.setAttribute("href", pageURL);
         aTag.innerText = props._innerHTML;
@@ -40,7 +39,7 @@
                 if (result === null) {
                     redirectTo404()
                 } else {
-                    await (await InitPage).setPage(pageURL);
+                    window.location.href = pageURL;
                 }
             } catch(error) {
                 console.error(error);

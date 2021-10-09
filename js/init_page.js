@@ -33,8 +33,8 @@ const main = async() => {
     const data = await getFileContentInJSON("/data.json");
     setTitle(data.name);
     setPage();
-    window.addEventListener("popstate", () => {
-        console.log("popstate");
+    window.addEventListener("hashchange", () => {
+        console.log("hashchange");
         setPage();
     })
 }
