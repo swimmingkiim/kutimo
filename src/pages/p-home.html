@@ -3,27 +3,24 @@
     <link rel="hcj-import" href="/src/base/route/r-go-to.html">
     <link rel="hcj-import" href="/src/base/layout/s-row.html">
     <link rel="hcj-import" href="/src/base/layout/s-column.html">
-    <link rel="hcj-import" href="/src/components/header-navbar.html">
-    <link rel="hcj-import" href="/src/components/sidebar-nav.html">
+    <link rel="hcj-import" href="/src/components/blog-layout.html">
 </head>
 
 <style>
-
+    
 </style>
 
-<div>
-    <header-navbar></header-navbar>
-    <sidebar-nav></sidebar-nav>
-    <s-column width="100%" height="90vh" background-color="pink">
-        <s-row>
+<blog-layout>
+    <s-column slot="content" width="100%" height="90vh" background-color="pink">
+        <s-row width="100%" height="100%">
             <r-go-to to="p-about.html">ABOUT</r-go-to>
-            <s-column background-color="orange">
+            <s-column background-color="orange" width="100%" height="100%">
                 <r-go-to to="p-post.html">POST</r-go-to>
                 <r-go-to to="p-404.html">404</r-go-to>
             </s-column>
         </s-row>
     </s-column>
-</div>
+</blog-layout>
 
 <script name="main" type="module">
     (function () {

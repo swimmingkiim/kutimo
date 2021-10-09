@@ -1,0 +1,18 @@
+<style>
+    
+</style>
+
+<div id="container">
+    <slot></slot>
+</div>
+
+<script name="main" type="module">
+    (function() {
+        return function main(root, props) {
+            const element = root.querySelector("#container");
+            Object.keys(props).forEach((attr) => {
+                element.style[attr] = props[attr];
+            }) 
+        } 
+    })()
+</script>
