@@ -25,16 +25,12 @@ const writeFile = (filePath, text) => {
     if (!fs.existsSync(dirPath)) {
         fs.mkdirSync(dirPath);
     }
-    fs.writeFile(filePath, text, { flag: "w" }, (err) => {
-        if (err) {
-            throw err;
-        }
-    });
+    fs.writeFileSync(filePath, text, { flag: "w" });
 }
 
-const generatePostHTMLs = (fileList) => {
+const generatePostHTMLs = (fileList, postDirPath) => {
     return fileList.map((filePath) => {
-        const newFilePath = filePath.replace(".md", ".html").replace(path.join(process.cwd(), "md"), path.join(process.cwd(), "post"));
+        const newFilePath = filePath.replace(".md", ".html").replace(path.join(process.cwd(), "md"), postDirPath);
         remark()
             .use(remarkHtml)
             .process(getFileInString(filePath))
@@ -46,20 +42,22 @@ const generatePostHTMLs = (fileList) => {
     })
 }
 
-const getDirTreeObject = (rootPath, tree, extension) => {
+const getDirTreeObject = (rootPath, tree, extension, applyBeforeAppend) => {
     let result = { ...tree };
     const files = fs.readdirSync(rootPath);
     files.forEach((file) => {
         if (file.endsWith(extension)) {
-            result._current.push(path.join(rootPath, file).replace(process.cwd(), ""));
+            const convertedFilePath = applyBeforeAppend(path.join(rootPath, file).replace(process.cwd(), ""));
+            result._current.push(convertedFilePath);
             return;
         }
-        result[file] = getDirTreeObject(path.join(rootPath, file), { _current: [] }, extension);
+        result[file] = getDirTreeObject(path.join(rootPath, file), { _current: [] }, extension, applyBeforeAppend);
     });
     return result;
 }
 
 const updatePostTreeInData = (tree, filePath) => {
+    console.log(tree)
     fs.readFile(filePath, (err, data) => {
         const prevData = JSON.parse(data.toString());
         const newData = { ...prevData, "post-tree": tree };
@@ -72,11 +70,17 @@ const updatePostTreeInData = (tree, filePath) => {
 
 }
 
+const clearPostDir = (dirPath) => {
+    fs.rmSync(dirPath, {recursive: true, force: true});
+    fs.mkdirSync(dirPath);
+}
+
 const main = () => {
     const fileList = getFileList(path.join(process.cwd(), "md"), [], ".md");
-    generatePostHTMLs(fileList);
-    const tree = getDirTreeObject(path.join(process.cwd(), "post"), { _current: [] }, ".html");
+    generatePostHTMLs(fileList, path.join(process.cwd(), "post"));
+    const tree = getDirTreeObject(path.join(process.cwd(), "md"), { _current: [] }, ".md", (str) => str.replace("/md", "/post").replace(".md", ".html"));
     updatePostTreeInData(tree, path.join(process.cwd(), "data.json"));
 }
 
+clearPostDir(path.join(process.cwd(), "post"));
 main();

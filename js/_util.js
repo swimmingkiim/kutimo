@@ -28,4 +28,6 @@ export const compare = (val1, val2) => {
     return val1 === val2;
 }
 
-export const getFileName = (path) => path.match(/([a-z|0-9|\-]+\.html)$/)[0].replace(".html", "");
+export const getFileName = (path, extension) => {
+    return path.match(/([a-z|0-9|\-]+\.[a-z]+)$/)[0].replace(extension ? `.${extension}` : ".html", "");
+}

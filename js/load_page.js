@@ -10,7 +10,7 @@ export const clearPage = () => {
     }
 }
 
-export const loadPage = async(filePath) => {
+export const loadPage = async(filePath, payload) => {
     const fileName = getFileName(filePath);
     const fileContent = await getFileContentInString(filePath);
     if (!customElements.get(fileName)) {
@@ -18,5 +18,5 @@ export const loadPage = async(filePath) => {
     }
     clearPage();
     const Element = customElements.get(fileName);
-    document.querySelector("#page").appendChild(new Element(fileContent));
+    document.querySelector("#page").appendChild(new Element(fileContent, payload));
 }

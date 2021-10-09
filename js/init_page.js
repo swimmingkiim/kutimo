@@ -7,21 +7,36 @@ const setTitle = (title) => {
     return 0;
 }
 
-const setPage = async() => {
+export const setPage = async(url) => {
+    if (url) {
+        window.location.href = url;
+    }
+    const data = await getFileContentInJSON("/data.json");
+    const defaultPath = data["home-entry"];
     const urlPageQuery = window.location.href.match(/page=[a-z|0-9|\-]+/);
+    const urlPostQuery = window.location.href.match(/post=[a-z|0-9|\-|\/]+/);
     if (urlPageQuery) {
         const filePath = "/src/pages/" + urlPageQuery[0].replace("page=", "") + ".html";
-        loadPage(filePath);
+        let payload = {
+            props: {}
+        };
+        if(urlPostQuery) {
+            payload.props["postPath"] = urlPostQuery[0].replace("post=/post/", "") + ".html";
+        }
+        loadPage(filePath, payload);
         return;
     }
-    const data = await getFileContentInString("/data.json");
-    loadPage(data["home-entry"]);
+    loadPage(defaultPath);
 }
 
 const main = async() => {
     const data = await getFileContentInJSON("/data.json");
     setTitle(data.name);
     setPage();
+    window.addEventListener("popstate", () => {
+        console.log("popstate");
+        setPage();
+    })
 }
 
 main();

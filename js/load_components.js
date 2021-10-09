@@ -1,6 +1,15 @@
 import { store } from "./init_store.js";
-import { getFileName } from "./_util.js";
+import { getFileName, getFileContentInString } from "./_util.js";
 
+export const loadComponent = async(filePath, payload) => {
+    const fileName = getFileName(filePath);
+    const fileContent = await getFileContentInString(filePath);
+    if (customElements.get(fileName) === undefined) {
+        await registerCustomElement(filePath, fileName);
+    }
+    const Element = customElements.get(fileName);
+    return new Element(fileContent, payload);
+}
 
 const getAttributesObject = (element) => {
     let result = {};
@@ -11,17 +20,19 @@ const getAttributesObject = (element) => {
     return result;
 }
 
-const getComponent = (htmlStr, propsObject) => {
+const getComponent = (htmlStr, _payload) => {
     return class extends HTMLElement{
-        constructor(fileContent, customObject) {
+        constructor(fileContent, payload) {
             super()
+            this.payload = { ...(_payload ? _payload : {}), ...(payload ? payload : {}) };
             this.template = document.createElement("template");
             this.template.innerHTML = fileContent ? fileContent : htmlStr;
             this.root = this.attachShadow({mode: "open"});
             this.root.appendChild(this.template.content);
-            const js = eval(this.root.querySelector("script[name=main]").innerText);
-            const props = { ...getAttributesObject(this), _innerHTML: this.innerHTML };
-            const passDown = customObject ? customObject : propsObject ? propsObject : null;
+            const script = this.root.querySelector("script[name=main]");
+            const js = script ? eval(script.innerText) : () => null;
+            const props = { ...getAttributesObject(this), _innerHTML: this.innerHTML, ...(this.payload.props ? this.payload.props : {}) };
+            const passDown = this.payload.passDown ? this.payload.passDown : null;
             const objToPassDown = js(this.root, props, store, passDown);
             if (this.root.querySelector("link[rel=hcj-import]")) {
                 registerCustomElementAll(this.root, objToPassDown);
@@ -30,21 +41,18 @@ const getComponent = (htmlStr, propsObject) => {
     }
 }
 
-export const registerCustomElement = async(filePath, tagName, passDownObject) => {
-    if (customElements.get(tagName)) {
-        return;
-    }
+export const registerCustomElement = async(filePath, tagName, payload) => {
     const result = await fetch(filePath);
-    const elClass = getComponent(await result.text(), passDownObject);
-    customElements.define(tagName, elClass);
+    const elClass = getComponent(await result.text(), payload);
+    customElements.get(tagName) ? null : customElements.define(tagName, elClass);
 }
 
-const registerCustomElementAll = (root, passDownObject) => {
+const registerCustomElementAll = (root, payload) => {
     const importList = root.querySelectorAll("link[rel=hcj-import]");
     Array.prototype.forEach.call(importList, (el) => {
         const path = el.href;
         const fileName = getFileName(path);
-        registerCustomElement(path, fileName, passDownObject);
+        registerCustomElement(path, fileName, payload);
     })
 }
 

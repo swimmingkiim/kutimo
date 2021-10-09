@@ -5,18 +5,28 @@
 
 <div>
     <p>this is post page</p>
-    <hello-world></hello-world>
-    <p>store count is <span id="store-value">undefined</span></p>
     <r-go-to to="p-home.html">go to HOME</r-go-to>
+    <div id="md-container"></div>
 </div>
 
 <script name="main" type="module">
 
+    const LoadComponents = import("/js/load_components.js");
+
+    const POST_PREFIX = "/post";
+
+    const injectPostIntoContainer = async(containerEl, postPath) => {
+        const fullPath = `${POST_PREFIX}/${postPath}`;
+        const postElement = await (await LoadComponents).loadComponent(fullPath);
+        containerEl.appendChild(postElement);
+    }
+
     (function() {
-        return function main(root, props, store) {
-            store.addSubscribe((store) => {
-                root.querySelector("#store-value").innerText = store.data.count;
-            })
+        return function main(root, props, store, passDown) {
+            if (props.postPath) {
+                const container = root.querySelector("#md-container");
+                injectPostIntoContainer(container, props.postPath);
+            }
         }
     })()
 </script>
