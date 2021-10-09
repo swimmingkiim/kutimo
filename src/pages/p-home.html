@@ -10,17 +10,13 @@
     
 </style>
 
-<blog-layout>
-    <s-column slot="content" width="100%" min-height="95vh" background-color="pink">
-        <s-row width="100%" height="100%">
-            <r-go-to to="p-about.html">ABOUT</r-go-to>
-            <s-column background-color="orange" width="100%" height="100%">
-                <r-go-to to="p-post.html">POST</r-go-to>
-                <r-go-to to="p-404.html">404</r-go-to>
-            </s-column>
-        </s-row>
+<s-row width="100%" height="100%">
+    <r-go-to to="p-about.html">ABOUT</r-go-to>
+    <s-column background-color="orange" width="100%" height="100%">
+        <r-go-to to="p-post.html">POST</r-go-to>
+        <r-go-to to="p-404.html">404</r-go-to>
     </s-column>
-</blog-layout>
+</s-row>
 
 <script name="main" type="module">
     (function () {
