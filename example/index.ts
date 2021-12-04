@@ -1,6 +1,6 @@
 import {sum} from "web-components-system"
 
-const result = sum(1, 3)
+const result = sum(6, 0)
 
 const child = document.createElement("div")
 child.innerText = `${result}`

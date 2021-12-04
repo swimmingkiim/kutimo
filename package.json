@@ -12,8 +12,10 @@
     "type": "git",
     "url": "git+https://github.com/swimmingkiim/web-components-system.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "web component"
+  ],
+  "author": "swimmingkiim",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/swimmingkiim/web-components-system/issues"
