@@ -6,7 +6,8 @@
   "main": "./build/main.js",
   "types": "./build/types",
   "scripts": {
-    "build": "rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types"
+    "build": "rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
+    "example": "npm run build && cd ./example && npm start"
   },
   "repository": {
     "type": "git",
