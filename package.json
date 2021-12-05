@@ -6,6 +6,11 @@
   "main": "./build/main.js",
   "types": "./build/types",
   "scripts": {
+    "lib": "npm run lib:html && npm run lib:css && npm run lib:store && npm run lib:element",
+    "lib:html": "cd ./lib/wcs-html && npm run build",
+    "lib:css": "cd ./lib/wcs-css && npm run build",
+    "lib:store": "cd ./lib/wcs-store && npm run build",
+    "lib:element": "cd ./lib/wcs-element && npm run build",
     "build": "rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
     "example": "npm run build && cd ./example && npm start"
   },
@@ -31,5 +36,11 @@
     "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.3.1",
     "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "wcs-css": "file:lib/wcs-css",
+    "wcs-element": "file:lib/wcs-element",
+    "wcs-html": "file:lib/wcs-html",
+    "wcs-store": "file:lib/wcs-store"
   }
 }
