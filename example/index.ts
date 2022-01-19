@@ -1,8 +1,6 @@
-import {sum} from "web-components-system"
+import {html} from 'wcs-html';
 
-const result = sum(6, 0)
 
-const child = document.createElement("div")
-child.innerText = `${result}`
-
-document.body.appendChild(child)
+const wcsHtmlFragment = html`
+  <div>Hello ${Math.random().toString()}</div>`;
+document.body.appendChild(wcsHtmlFragment.fragment);

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "wcs-html": "file:../lib/wcs-html",
     "web-components-system": "file:.."
   },
   "devDependencies": {

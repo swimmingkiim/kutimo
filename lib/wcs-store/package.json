@@ -5,7 +5,7 @@
   "main": "./build/main.js",
   "types": "./build/types",
   "scripts": {
-    "build": "rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types"
+    "build": "rm -rf ./build && rollup --config && tsc -d --emitDeclarationOnly --declarationDir ./build/types"
   },
   "keywords": [],
   "author": "",
