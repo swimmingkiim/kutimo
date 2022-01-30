@@ -1,1 +1,3 @@
-export const sum = (a: number, b: number) => a + b
+import WCSBaseElement from "./WCSBaseElement";
+
+export default WCSBaseElement;

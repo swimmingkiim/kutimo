@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "description": "WCBaseElement for web-components-system",
   "main": "./build/main.js",
-  "types": "./build/types",
+  "types": "./build/types/index.d.ts",
   "scripts": {
     "build": "rm -rf ./build && rollup --config && tsc -d --emitDeclarationOnly --declarationDir ./build/types"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+        "wcs-html": "file:../wcs-html",
+        "wcs-css": "file:../wcs-css",
+        "wcs-store": "file:../wcs-store"
+  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",

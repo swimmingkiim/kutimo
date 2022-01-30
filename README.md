@@ -5,7 +5,7 @@
 1. [ ] `workflows` html -> template -> dom insert
 2. [ ] `workflows`css -> style -> dom insert
 3. [ ] `class` GlobalStore
-4. [ ] `class` WCBaseElement
+4. [ ] `class` WCSBaseElement
    1. [ ] lifecycle hook `callback fun`
       1. [ ] onStart
       2. [ ] `internal` registerIfNot

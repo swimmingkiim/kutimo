@@ -4,7 +4,7 @@
   "type": "module",
   "description": "",
   "main": "./build/main.js",
-  "types": "./build/types",
+  "types": "./build/types/index.d.ts",
   "scripts": {
     "lib": "npm run lib:html && npm run lib:css && npm run lib:store && npm run lib:element",
     "lib:html": "cd ./lib/wcs-html && npm run build",
@@ -12,7 +12,7 @@
     "lib:store": "cd ./lib/wcs-store && npm run build",
     "lib:element": "cd ./lib/wcs-element && npm run build",
     "build": "rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
-    "example": "npm run build && cd ./example && npm start"
+    "example": "npm run lib && cd ./example && npm start"
   },
   "repository": {
     "type": "git",

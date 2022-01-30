@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "CSS workflows for web-components-system",
   "main": "./build/main.js",
-  "types": "./build/types",
+  "types": "./build/types/index.d.ts",
   "scripts": {
     "build": "rm -rf ./build && rollup --config && tsc -d --emitDeclarationOnly --declarationDir ./build/types"
   },
