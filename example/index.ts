@@ -1,17 +1,38 @@
 import WCSBaseElement from "wcs-element";
 
+const test = "this is test";
+
+class SubElement extends WCSBaseElement {
+
+    constructor() {
+        super("sub-element");
+        super.init();
+        this.props = {
+            name: "default",
+        }
+        this.html`
+            <p>{{this.props.name}}</p>
+        `;
+    }
+}
+
+
 class SampleElement extends WCSBaseElement {
 
     constructor() {
         super("test-element");
-        super.init({
-            count: 0
+        this.import = [SubElement];
+        this.init({
+            count: 0,
+            name: "swimmingkiim",
         });
         this.html`
         <div>
-            <p>{{ this.state.count }}</p>
+            <p>${test}</p>
+            <p count="{{this.state.count}}">{{this.state.count}}</p>
             <button on:click="${this.onClickDecrementButton}">decrement</button>
             <button on:click="${this.onClickIncrementButton}">increment</button>
+            <sub-element name="{{this.state.count < 3 ? "more" : this.state.name}}"></sub-element>
         </div>`
     }
 
@@ -26,7 +47,6 @@ class SampleElement extends WCSBaseElement {
         })
     }
 }
-
 const testElement = new SampleElement();
 
 const wcsRoot = document.createElement("div");

@@ -17,13 +17,19 @@ export type WCSElementState = {
     [key: string]: any;
 }
 
+export type WCSElementProps = {
+    [key: string]: any;
+}
+
 export interface HTMLTagClass extends HTMLElement {
     context: WCSBaseElement;
     render: (compiled: WCSHtmlCompileResult) => void;
 };
 
-export default abstract class WCSBaseElement {
+export default class WCSBaseElement {
     tagName: string;
+    props: WCSElementProps;
+    import: any[];
     private _state: WCSElementState;
     _element: {
         self: WCSBaseElement | null,
@@ -35,6 +41,8 @@ export default abstract class WCSBaseElement {
 
     constructor(tagName: string) {
         this.tagName = tagName;
+        this.props = {};
+        this.import = [];
         this._element = {
             self: null,
             htmlTagClass: null,
@@ -51,6 +59,9 @@ export default abstract class WCSBaseElement {
 
     /* basic methods */
     public init(initialState?: WCSElementState) {
+        if (this.import.length > 0) {
+            this.import.forEach((SubElement) => new SubElement());
+        }
         if (initialState !== null && initialState !== undefined) {
             this._state = initialState;
         } else {
@@ -68,11 +79,12 @@ export default abstract class WCSBaseElement {
         if (this._element.strings === null) {
             throw new Error("Please run this.html inside constructor");
         }
-        this._element.htmlCompileResult = html(this._element.strings, ...this._element.values)(this.state);
+        this._element.htmlCompileResult = html(this._element.strings, ...this._element.values)(this.state, this.props);
         if (!customElements.get(this.tagName)) {
             this._registerTag();
         }
     }
+
     private _registerTag() {
         const elementContext = this;
         class WCSElement extends HTMLElement implements HTMLTagClass {
@@ -81,6 +93,7 @@ export default abstract class WCSBaseElement {
                 super();
                 this.context = elementContext;
                 this.setAttribute("class", "__wcs-element");
+
                 Object.entries(this.context._element.htmlCompileResult.eventCallback).forEach(([eventName, handlers]) => {
                     this.addEventListener(eventName.replace("on:", ""), (evt) => {
                         const targetElement = evt.target as HTMLElement;
@@ -92,9 +105,21 @@ export default abstract class WCSBaseElement {
                         })
                     });
                 });
-                this.appendChild(this.context._element.htmlCompileResult.fragment);
+                this.render();
             }
+
+            registerProps() {
+                Object.keys(this.context.props).forEach((propName: string) => {
+                    const attr = this.getAttribute(camelToSnack(propName));
+                    if (attr) {
+                        this.context.props[propName] = attr;
+                    }
+                });
+                this.context._render();
+            }
+
             render() {
+                this.registerProps();
                 this.replaceChildren(...this.context._element.htmlCompileResult.fragment.children)
             };
         };
@@ -127,6 +152,8 @@ export default abstract class WCSBaseElement {
 
 const snakeToCamel = (str: string) => str.replace(/\-[a-z]/g, (char) => char[1].toUpperCase());
 const snakeToPascal = (str: string) => str.replace(/^[a-z]/g, (char) => char.toUpperCase()).replace(/\-[a-z]/g, (char) => char[1].toUpperCase());
+
+const camelToSnack = (str: string) => str.replace(/\[a-z][A-Z]/g, (char) => `-${char[1].toLowerCase()}`).replace(/[A-Z]/g, (char) => char.toLowerCase());
 
 export type WCSGeneratedHTMLElementResult = {
     className: string;
