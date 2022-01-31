@@ -52,7 +52,7 @@ const compileJSExpressions = (expressionArray: RegExpMatchArray, state: { [name:
             return typeof props[key] === "string" ? `"${props[key]}"` : props[key];
         });
         newJSExpression = newJSExpression.replace(/\{|\}/g, "");
-        const jsResult = new Function(`return ${newJSExpression}`)();
+        const jsResult = new Function(`return (${newJSExpression.trim()})`)();
         return {
             oldStr: jsExpression,
             newStr: jsResult,
@@ -70,7 +70,7 @@ const convertOldToNewExpressions = (originalStr: string, expressions: ReturnType
 }
 
 const concatHTMLStrings = (result: WCSHtmlCompileResult, state: { [name: string]: any }, props: { [name: string]: any }, strings: TemplateStringsArray, ...values: unknown[]) => {
-    return strings.flatMap((str, idx) => {
+    const replacedWithValues = strings.flatMap((str, idx) => {
         let callbackName: string = values[idx] !== undefined ? values[idx].toString() : "";
         const eventMatch = str.match(/(on:)(\w+)(?!.*\1)/g);
         if (values.length > 0 && values[idx] !== undefined && values[idx] instanceof Function) {
@@ -80,14 +80,15 @@ const concatHTMLStrings = (result: WCSHtmlCompileResult, state: { [name: string]
             }
             result.eventCallback[`${eventMatch ?? "__unknown"}`][callbackName] = values[idx] as Function;
         }
-        const expressions = findJSExpressions(str);
-        if (expressions === null) {
-            return [str, callbackName];
-        }
-        const compiledExpressions = compileJSExpressions(expressions, state, props);
-        const replacedString = convertOldToNewExpressions(str, compiledExpressions);
-        return [replacedString, callbackName];
+        return [str, callbackName];
     }).join('').trim();
+    const expressions = findJSExpressions(replacedWithValues);
+    if (expressions === null) {
+        return replacedWithValues;
+    }
+    const compiledExpressions = compileJSExpressions(expressions, state, props);
+    const replacedWithStateAndProps = convertOldToNewExpressions(replacedWithValues, compiledExpressions);
+    return replacedWithStateAndProps;
 }
 
 export const html = (strings: TemplateStringsArray, ...values: unknown[]) => (state: { [name: string]: any }, props: { [name: string]: any }) => {

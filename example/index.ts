@@ -21,11 +21,13 @@ class SubElement extends WCSBaseElement {
 
 class AppElement extends WCSBaseElement {
     static tagName = "wcs-app";
+    testValue = 5;
     constructor() {
         super(AppElement.tagName);
         this.import = [SubElement];
         this.init({
             count: 0,
+            limit: 3,
             name: "swimmingkiim",
         });
         this.html`
@@ -34,9 +36,19 @@ class AppElement extends WCSBaseElement {
             <p count="{{this.state.count}}">{{this.state.count}}</p>
             <button on:click="${this.onClickDecrementButton}">decrement</button>
             <button on:click="${this.onClickIncrementButton}">increment</button>
-            <sub-element name="{{this.state.count < 3 ? "more" : this.state.name}}"></sub-element>
+            {{
+                this.state.count > this.state.limit ? '<sub-element name="swimmingkiim"></sub-element>' : '<sub-element name="more"></sub-element>'
+            }}
         </div>`
         this.startRender();
+    }
+
+    onBeforeRender(): void {
+        if (this.state.count === 5 && this.state.limit < 10) {
+            this.setState({
+                limit: 10,
+            })
+        }
     }
 
     onAfterRender(): void {
