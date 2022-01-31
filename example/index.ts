@@ -3,24 +3,26 @@ import WCSBaseElement from "wcs-element";
 const test = "this is test";
 
 class SubElement extends WCSBaseElement {
-
+    static tagName = "sub-element";
     constructor() {
-        super("sub-element");
-        super.init();
+        super(SubElement.tagName);
         this.props = {
             name: "default",
         }
+        this.import = [];
+        this.init();
         this.html`
             <p>{{this.props.name}}</p>
         `;
+        this.startRender();
     }
 }
 
 
-class SampleElement extends WCSBaseElement {
-
+class AppElement extends WCSBaseElement {
+    static tagName = "wcs-app";
     constructor() {
-        super("test-element");
+        super(AppElement.tagName);
         this.import = [SubElement];
         this.init({
             count: 0,
@@ -34,6 +36,11 @@ class SampleElement extends WCSBaseElement {
             <button on:click="${this.onClickIncrementButton}">increment</button>
             <sub-element name="{{this.state.count < 3 ? "more" : this.state.name}}"></sub-element>
         </div>`
+        this.startRender();
+    }
+
+    onAfterRender(): void {
+        console.log("after app(state): ", this.state)
     }
 
     onClickIncrementButton() {
@@ -47,11 +54,18 @@ class SampleElement extends WCSBaseElement {
         })
     }
 }
-const testElement = new SampleElement();
+
+WCSBaseElement.registerTag(AppElement)
 
 const wcsRoot = document.createElement("div");
 wcsRoot.setAttribute("id", "wcs-root");
 document.body.prepend(wcsRoot);
-document.body.querySelector("#wcs-root").innerHTML = "<test-element></test-element>";
+
+const container = document.createElement("div");
+
+container.innerHTML = "<wcs-app></wcs-app>";
+
+document.body.querySelector("#wcs-root").innerHTML = "<wcs-app></wcs-app>";
+document.body.querySelector("#wcs-root").appendChild(container);
 
 
