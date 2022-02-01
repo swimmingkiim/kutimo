@@ -1,0 +1,5 @@
+
+sub-element > * {
+    @apply w-[3em];
+    background-color: pink;
+}

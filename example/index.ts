@@ -1,4 +1,6 @@
 import WCSBaseElement from "wcs-element";
+import "./index.css";
+import "./src/sample.css";
 
 const test = "this is test";
 
@@ -68,10 +70,6 @@ class AppElement extends WCSBaseElement {
 }
 
 WCSBaseElement.registerTag(AppElement)
-
-const wcsRoot = document.createElement("div");
-wcsRoot.setAttribute("id", "wcs-root");
-document.body.prepend(wcsRoot);
 
 const container = document.createElement("div");
 

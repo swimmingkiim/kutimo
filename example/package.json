@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pre-start": "rollup -c -w",
+    "css": "npx tailwindcss -i ./src/**/* -o ./build/style.css",
     "start": "concurrently --kill-others \"npm run pre-start\" \"wds --open build/index.html --watch --node-resolve\""
   },
   "keywords": [],
@@ -21,9 +22,16 @@
     "@rollup/plugin-strip": "^2.1.0",
     "@rollup/plugin-typescript": "^8.3.0",
     "@web/dev-server": "^0.1.28",
+    "autoprefixer": "^10.4.2",
     "concurrently": "^6.4.0",
+    "cssnano": "^5.0.16",
+    "postcss": "^8.4.5",
     "rollup": "^2.60.2",
+    "rollup-plugin-generate-html-template": "^1.7.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
+    "tailwindcss": "^3.0.18",
     "tslib": "^2.3.1",
     "typescript": "^4.5.2"
   }
