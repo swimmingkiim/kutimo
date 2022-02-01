@@ -1,0 +1,15 @@
+{
+  "name": "eslint-plugin-wcs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "wcs",
+    "web-components-system",
+    "eslint",
+    "plugin"
+  ],
+  "author": "swimmingkiim",
+  "license": "MIT"
+}

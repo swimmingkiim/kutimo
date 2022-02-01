@@ -3,7 +3,7 @@
 ## Requirements
 
 1. [x] `workflows` html -> template -> dom insert
-2. [ ] `workflows`css -> style -> dom insert
+2. [x] `workflows`css import & tailwind css
 3. [ ] `class` GlobalStore
 4. [ ] `class` WCSBaseElement
    1. [ ] lifecycle hook `callback fun`
@@ -16,10 +16,10 @@
    2. [x] reactive state management
    3. [ ] connect to global store
    4. [x] receive props
-   5. [ ] receive css & html
-   6. [x] `static` registerTag() method
+   5. [x] `static` registerTag() method
           * custom define call
-   7. [x] import other WCSBaseElement
-   8. [x] `on:` event directive
+   6. [x] import other WCSBaseElement
+   7. [x] `on:` event directive
+5. [x] create `eslint-plugin-wcs`
 
 
