@@ -21,5 +21,6 @@
    6. [x] import other WCSBaseElement
    7. [x] `on:` event directive
 5. [x] create `eslint-plugin-wcs`
-
+6. [ ] create `Link` Element
+    1. [ ] pass props and global store data to next html
 

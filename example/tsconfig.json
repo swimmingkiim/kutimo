@@ -8,6 +8,10 @@
     "target": "es6",
     "outDir": "./build"
   },
-  "include": ["src/**/*", "./index.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "./index.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

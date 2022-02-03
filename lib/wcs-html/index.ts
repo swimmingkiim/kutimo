@@ -45,14 +45,19 @@ const compileJSExpressions = (expressionArray: RegExpMatchArray, state: { [name:
         let newJSExpression = jsExpression;
         newJSExpression = newJSExpression.replace(/this\.state\.[a-zA-Z.]+/g, (char) => {
             const key = char.replace("this.state.", "");
-            return typeof state[key] === "string" ? `"${state[key]}"` : state[key];
+            return typeof state[key] === "string" ? `${state[key]}` : state[key];
         });
         newJSExpression = newJSExpression.replace(/this\.props\.[a-zA-Z.]+/g, (char) => {
             const key = char.replace("this.props.", "");
-            return typeof props[key] === "string" ? `"${props[key]}"` : props[key];
+            return typeof props[key] === "string" ? `${props[key]}` : props[key];
         });
         newJSExpression = newJSExpression.replace(/\{|\}/g, "");
-        const jsResult = new Function(`return (${newJSExpression.trim()})`)();
+        let jsResult = newJSExpression;
+        try {
+            jsResult = new Function(`return (${newJSExpression.trim()})`)();
+        } catch (e) {
+            console.log("just string not js")
+        }
         return {
             oldStr: jsExpression,
             newStr: jsResult,
@@ -94,10 +99,15 @@ const concatHTMLStrings = (result: WCSHtmlCompileResult, state: { [name: string]
 export const html = (strings: TemplateStringsArray, ...values: unknown[]) => (state: { [name: string]: any }, props: { [name: string]: any }) => {
     const result = initResult(strings, values);
     validateAuthor(result.authorToken);
+    console.log(state);
+    console.log(props);
+    console.log(strings);
     const _htmlString = concatHTMLStrings(result, state, props, strings, ...values);
+    console.log(_htmlString)
     const _fragment = parseFragment(_htmlString);
     const template = document.createElement('template');
     template.innerHTML = serialize(_fragment);
+    console.log(template.innerHTML)
     return {
         ...result,
         fragment: template.content,

@@ -11,18 +11,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-        "wcs-html": "file:../wcs-html",
-        "wcs-css": "file:../wcs-css",
-        "wcs-store": "file:../wcs-store"
+    "wcs-css": "file:../wcs-css",
+    "wcs-html": "file:../wcs-html",
+    "wcs-store": "file:../wcs-store"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-strip": "^2.1.0",
-    "@rollup/plugin-typescript": "^8.3.0",
     "rollup": "^2.60.2",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.2",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.5"
   }
 }

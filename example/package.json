@@ -4,15 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pre-start": "rollup -c -w",
+    "compile": "rollup --config -w",
     "format": "npx eslint --fix -c .eslintrc.json ./index.ts",
-    "start": "concurrently --kill-others \"npm run pre-start\" \"wds --open build/index.html --watch --node-resolve\""
+    "start": "rm -rf ./build && concurrently --kill-others \"npm run compile\" \"wds --node-resolve --watch --root-dir . --base-path / --app-index index.html --open\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wcs-html": "file:../lib/wcs-element",
     "web-components-system": "file:.."
   },
   "devDependencies": {
@@ -20,7 +19,6 @@
     "@rollup/plugin-html": "^0.2.4",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-strip": "^2.1.0",
-    "@rollup/plugin-typescript": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "@web/dev-server": "^0.1.28",
@@ -33,12 +31,12 @@
     "postcss": "^8.4.5",
     "prettier": "2.5.1",
     "rollup": "^2.60.2",
-    "rollup-plugin-generate-html-template": "^1.7.0",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.2",
     "tailwindcss": "^3.0.18",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.5"
   }
 }

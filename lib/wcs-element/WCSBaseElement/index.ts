@@ -1,16 +1,3 @@
-/*
-4. [ ] `class` WCSBaseElement
-   1. [ ] lifecycle hook `callback fun`
-      1. [ ] onStart
-      2. [ ] `internal` registerIfNot
-      3. [ ] onBeforeInit
-      4. [ ] `internal` init -> instantiate & insert to dom
-      5. [ ] onAfterInit
-      6. [ ] onUpdate
-         * `prop` callback function
-         * `prop` dependencies array
-*/
-
 import { html, WCSHtmlCompileResult } from "wcs-html";
 
 export type WCSElementState = {
@@ -21,16 +8,12 @@ export type WCSElementProps = {
     [key: string]: any;
 }
 
-//export interface HTMLTagClass extends HTMLElement {
-//    context: WCSBaseElement;
-//    render: () => void;
-//};
-
 export interface WCSBaseElementLifecycle {
     onStart?(): void;
     onBeforeRender?(): void;
     onAfterRender?(): void;
-    onUpdate?(): void;
+    onUpdateState?(): (prevState: WCSElementState, currentState: WCSElementState) => void;
+    [key: string]: any;
 }
 
 export default class WCSBaseElement extends HTMLElement implements WCSBaseElementLifecycle {
@@ -170,6 +153,10 @@ export default class WCSBaseElement extends HTMLElement implements WCSBaseElemen
         });
     }
 
+    public reRender() {
+        this._render();
+    }
+
     public static registerTag(classRef: any) {
         if (!customElements.get(classRef.tagName)) {
             customElements.define(classRef.tagName, classRef);
@@ -177,11 +164,13 @@ export default class WCSBaseElement extends HTMLElement implements WCSBaseElemen
     }
 
     public setState(newState: object) {
+        const oldState = { ...this._state };
         this._state = {
             ...this._state,
             ...newState,
         }
         this._render();
+        this.onUpdateState()(oldState, this.state);
     }
 
     public startRender() {
@@ -199,8 +188,8 @@ export default class WCSBaseElement extends HTMLElement implements WCSBaseElemen
     onAfterRender(): void {
 
     }
-    onUpdate(): void {
-
+    onUpdateState(): (prevState: WCSElementState, currentState: WCSElementState) => void {
+        return () => null;
     }
 }
 
