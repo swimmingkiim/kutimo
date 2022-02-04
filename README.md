@@ -6,21 +6,21 @@
 2. [x] `workflows`css import & tailwind css
 3. [ ] `class` GlobalStore
 4. [ ] `class` WCSBaseElement
-   1. [ ] lifecycle hook `callback fun`
-      1. [x] onStart
-      2. [x] onBeforeRender
-      3. [x] onAfterRender
-      4. [ ] onUpdate
-         * `prop` callback function
-         * `prop` dependencies array
-   2. [x] reactive state management
-   3. [ ] connect to global store
-   4. [x] receive props
-   5. [x] `static` registerTag() method
-          * custom define call
-   6. [x] import other WCSBaseElement
-   7. [x] `on:` event directive
+  1. [x] lifecycle hook `callback fun`
+    1. [x] onStart
+    2. [x] onBeforeRender
+    3. [x] onAfterRender
+    4. [x] onUpdateState
+  2. [x] reactive state management
+  3. [ ] connect to global store
+  4. [x] receive props
+  5. [x] `static` registerTag() method * custom define call
+  6. [x] import other WCSBaseElement
+  7. [x] `on:` event directive
 5. [x] create `eslint-plugin-wcs`
-6. [ ] create `Link` Element
-    1. [ ] pass props and global store data to next html
-
+6. [x] `class` RouterElement
+  1. [x] single page(index.html) routing
+  2. [x] take RouteMap type blueprint object as prop
+  3. [x] `static` navigate(url)
+  4. [x] `static` goBack()
+  5. [x] `static` refresh()
