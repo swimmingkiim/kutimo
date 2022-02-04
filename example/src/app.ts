@@ -1,8 +1,7 @@
-import WCSBaseElement, {WCSElementState} from "web-components-system";
+import WCSBaseElement, { Router, WCSElementState } from "web-components-system";
 import SubElement from "./sub-element";
 import "../index.css";
 import "./sample.css";
-import RouterElement from "../../lib/wcs-route/WCSRouter/router";
 
 const test = "this is test";
 
@@ -18,17 +17,20 @@ export default class AppElement extends WCSBaseElement {
             limit: 3,
             name: "swimmingkiim",
         });
-        this.html`
-      <div>
-        <p>${ test }</p>
-        <p count="{{ this.state.count }}">{{ this.state.count }}</p>
-        <button on:click="${ this.onClickDecrementButton }">decrement</button>
-        <button on:click="${ this.onClickIncrementButton }">increment</button>
-        {{ this.state.count > this.state.limit ? '<sub-element name="swimmingkiim"></sub-element>' : ' <sub-element name="more"></sub-element>' }}
-        <button on:click="${ this.onGoToSub }">go to /sub</button>
-        <button on:click="${ this.onGoToHome }">go to home</button>
-      </div>`;
-        this.startRender();
+    }
+
+    renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
+        render`
+          <div>
+            <p>${test}</p>
+            <p count="${this.state.count}">${this.state.count}</p>
+            <button on:click="${this.onClickDecrementButton}">decrement</button>
+            <button on:click="${this.onClickIncrementButton}">increment</button>
+            ${this.state.count > this.state.limit ? '<sub-element name="swimmingkiim"></sub-element>' : ' <sub-element name="more"></sub-element>'}
+            <button on:click="${this.onGoToSub}">go to /sub</button>
+            <button on:click="${this.onGoToHome}">go to home</button>
+          </div>`;
+
     }
 
     onUpdateState(): (prevState: WCSElementState, currentState: WCSElementState) => void {
@@ -39,11 +41,11 @@ export default class AppElement extends WCSBaseElement {
     }
 
     onGoToHome() {
-        RouterElement.navigate("/");
+        Router.RouterElement.navigate("/");
     }
 
     onGoToSub() {
-        RouterElement.navigate("/sub");
+        Router.RouterElement.navigate("/sub");
     }
 
     onClickIncrementButton() {

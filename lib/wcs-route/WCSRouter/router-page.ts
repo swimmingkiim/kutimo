@@ -1,5 +1,9 @@
 import WCSBaseElement from "wcs-element";
 
+/**
+ * RouterPageElement is used on RouterElement.
+ * It displays elements for current location.
+ */
 export default class RouterPageElement extends WCSBaseElement {
   static tagName = "wcs-router-page";
 
@@ -10,10 +14,9 @@ export default class RouterPageElement extends WCSBaseElement {
       elementName: this.getAttribute("element-name")
     };
     this.init({});
-    this.html`
-      {{
-      <this.props.elementName></this.props.elementName> }}
-    `;
-    this.startRender();
+  }
+
+  renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
+    render`<${ this.props.elementName }></${ this.props.elementName }>`;
   }
 }

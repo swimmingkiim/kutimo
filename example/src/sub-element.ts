@@ -1,5 +1,4 @@
-import WCSBaseElement from "web-components-system";
-import RouterElement from "../../lib/wcs-route/WCSRouter/router";
+import WCSBaseElement, { Router } from "web-components-system";
 
 export default class SubElement extends WCSBaseElement {
     static tagName = "sub-element";
@@ -11,11 +10,13 @@ export default class SubElement extends WCSBaseElement {
         };
         this.import = [];
         this.init();
-        this.html`<p>{{ this.props.name }}</p><button on:click="${ this.onGoToSubApp }">go to /sub/app</button>`;
-        this.startRender();
+    }
+
+    renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
+        render`<p>${this.props.name}</p><button on:click="${this.onGoToSubApp}">go to /sub/app</button>`;
     }
 
     onGoToSubApp() {
-        RouterElement.navigate("/sub/app");
+        Router.RouterElement.navigate("/sub/app");
     }
 }
