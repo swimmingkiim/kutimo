@@ -13,7 +13,6 @@ export default class AppElement extends WCSBaseElement {
         super(AppElement.tagName);
         this.import = [SubElement];
         this.init({
-            count: 0,
             limit: 3,
             name: "swimmingkiim",
         });
@@ -23,10 +22,10 @@ export default class AppElement extends WCSBaseElement {
         render`
           <div>
             <p>${test}</p>
-            <p count="${this.state.count}">${this.state.count}</p>
+            <p count="${this.store.data.count}">${this.store.data.count}</p>
             <button on:click="${this.onClickDecrementButton}">decrement</button>
             <button on:click="${this.onClickIncrementButton}">increment</button>
-            ${this.state.count > this.state.limit ? '<sub-element name="swimmingkiim"></sub-element>' : ' <sub-element name="more"></sub-element>'}
+            ${this.store.data.count > this.state.limit ? '<sub-element name="swimmingkiim"></sub-element>' : ' <sub-element name="more"></sub-element>'}
             <button on:click="${this.onGoToSub}">go to /sub</button>
             <button on:click="${this.onGoToHome}">go to home</button>
           </div>`;
@@ -45,18 +44,19 @@ export default class AppElement extends WCSBaseElement {
     }
 
     onGoToSub() {
+        console.log(Router.RouterElement.navigate)
         Router.RouterElement.navigate("/sub");
     }
 
     onClickIncrementButton() {
-        this.setState({
-            count: this.state.count + 1,
+        this.store.setStore({
+            count: this.store.data.count + 1,
         });
     }
 
     onClickDecrementButton() {
-        this.setState({
-            count: this.state.count - 1,
+        this.store.setStore({
+            count: this.store.data.count - 1,
         });
     }
 }

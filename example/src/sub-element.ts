@@ -13,10 +13,11 @@ export default class SubElement extends WCSBaseElement {
     }
 
     renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
-        render`<p>${this.props.name}</p><button on:click="${this.onGoToSubApp}">go to /sub/app</button>`;
+        render`<p>${this.props.name} - count : ${this.store.data.count}</p><button on:click="${this.onGoToSubApp}">go to /sub/app</button>`;
     }
 
     onGoToSubApp() {
         Router.RouterElement.navigate("/sub/app");
     }
 }
+

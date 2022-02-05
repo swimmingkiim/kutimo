@@ -1,1 +1,5 @@
-export const sum = (a: number, b: number) => a + b
+import WCSStore, { WCSStoreData } from "./WCSStore";
+
+export { WCSStoreData };
+
+export default WCSStore;

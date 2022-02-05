@@ -1,4 +1,4 @@
-import WCSBaseElement, { WCSElementState, WCSElementProps, WCSGeneratedHTMLElementResult, WCSBaseElementLifecycle } from "./WCSBaseElement";
+import WCSBaseElement, { WCSElementState, WCSElementProps, WCSBaseElementLifecycle } from "./WCSBaseElement";
 
-export { WCSElementState, WCSElementProps, WCSGeneratedHTMLElementResult, WCSBaseElementLifecycle };
+export { WCSElementState, WCSElementProps, WCSBaseElementLifecycle };
 export default WCSBaseElement;

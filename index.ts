@@ -1,16 +1,20 @@
 import WCSBaseElement, {
-  WCSElementState,
-  WCSElementProps,
-  WCSGeneratedHTMLElementResult,
-  WCSBaseElementLifecycle
+    WCSElementState,
+    WCSElementProps,
+    WCSBaseElementLifecycle
 } from "wcs-element";
-import RouterElement, {RouteDefinition, RouteMap, PageElement} from "wcs-route";
+import RouterElement, { RouteDefinition, RouteMap, PageElement } from "wcs-route";
+import WCSStore, { WCSStoreData } from "wcs-store";
 
-export {WCSElementState, WCSElementProps, WCSGeneratedHTMLElementResult, WCSBaseElementLifecycle};
-export {RouteDefinition, RouteMap, PageElement};
+export { WCSElementState, WCSElementProps, WCSBaseElementLifecycle };
+export { RouteDefinition, RouteMap, PageElement };
+export { WCSStoreData };
 
+export const Store = {
+    WCSStore,
+}
 
 export const Router = {
-  RouterElement
+    RouterElement
 };
 export default WCSBaseElement;
