@@ -1,5 +1,5 @@
 import path from "path";
-import {terser} from "rollup-plugin-terser";
+import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
@@ -25,7 +25,7 @@ export default {
             use: {
                 sass: null,
                 stylus: null,
-                less: {javascriptEnabled: true}
+                less: { javascriptEnabled: true }
             },
             config: {
                 path: "./postcss.config.js",

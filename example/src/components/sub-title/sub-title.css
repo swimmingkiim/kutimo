@@ -1,0 +1,5 @@
+
+sub-title > * {
+    @apply mx-auto;
+    background-color: pink;
+}

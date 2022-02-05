@@ -14,8 +14,7 @@
     "sourceType": "module"
   },
   "plugins": [
-    "@typescript-eslint",
-    "eslint-plugin-wcs"
+    "@typescript-eslint"
   ],
   "rules": {
     "indent": [
@@ -29,7 +28,6 @@
     "semi": [
       "error",
       "always"
-    ],
-    "wcs/wcs-html-template-literal": 2
+    ]
   }
 }

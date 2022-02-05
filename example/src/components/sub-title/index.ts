@@ -1,10 +1,11 @@
 import WCSBaseElement, { Router } from "web-components-system";
+import "./sub-title.css";
 
-export default class SubElement extends WCSBaseElement {
-    static tagName = "sub-element";
+export default class SubTitleElement extends WCSBaseElement {
+    static tagName = "sub-title";
 
     constructor() {
-        super(SubElement.tagName);
+        super(SubTitleElement.tagName);
         this.props = {
             name: "default",
         };
@@ -13,7 +14,7 @@ export default class SubElement extends WCSBaseElement {
     }
 
     renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
-        render`<p>${this.props.name} - count : ${this.store.data.count}</p><button on:click="${this.onGoToSubApp}">go to /sub/app</button>`;
+        render`<p>${this.props.name}</p>`;
     }
 
     onGoToSubApp() {

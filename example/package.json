@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "rollup --config -w",
-    "format": "npx eslint --fix -c .eslintrc.json ./index.ts",
+    "format": "npx eslint --fix -c .eslintrc.json ./src",
     "start": "rm -rf ./build && concurrently --kill-others \"npm run compile\" \"wds --node-resolve --watch --root-dir . --base-path / --app-index index.html --open\""
   },
   "keywords": [],
