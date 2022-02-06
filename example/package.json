@@ -10,7 +10,10 @@
     "format": "npx eslint --fix -c .eslintrc.json ./src",
     "start": "rm -rf ./build && npm run type && concurrently --kill-others \"npm run compile\" \"wds --node-resolve --watch --root-dir . --base-path / --app-index index.html --open\""
   },
-  "keywords": [],
+  "keywords": [
+        "web-components-system",
+        "wcs"
+    ],
   "author": "",
   "license": "ISC",
   "devDependencies": {

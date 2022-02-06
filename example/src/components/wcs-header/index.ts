@@ -16,7 +16,7 @@ export default class WCSHeaderElement extends WCSBaseElement {
 
     renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
         render`<header class="header wrapper">
-                <img src="${logo}" />
+                <img class="header logo" src="${logo}" />
                 <h1 class="header title">${this.props.name}</h1>
               </header>`;
     }

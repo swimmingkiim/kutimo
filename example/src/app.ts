@@ -12,9 +12,7 @@ export default class AppElement extends WCSBaseElement {
 
     renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
         render`
-          <div>
-            <wcs-header name="Welcome to ${this.wcsName}"></wcs-header>
-          </div>`;
+            <wcs-header name="Welcome to ${this.wcsName}"></wcs-header>`;
 
     }
 }
