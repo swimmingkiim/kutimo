@@ -40,7 +40,7 @@ module.exports = function createFromTemplate(projectName) {
         shell.ls("package.json").forEach((file) => {
             shell.sed("-i", "example", projectName, file);
         })
-        shell.echo("installing dependencies...");
+        shell.echo("installing dependencies...(this can take long time)");
         shell.exec("npm i");
         shell.exec(`npm i ${dependencies.join(" ")}`);
         shell.cd("..");
