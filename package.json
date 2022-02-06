@@ -5,13 +5,16 @@
   "description": "",
   "main": "./build/main.js",
   "types": "./build/types/index.d.ts",
+  "bin": {
+    "wcs": "bin/wcs-cli.js"
+  },
   "scripts": {
     "lib": "npm run lib:html && npm run lib:store && npm run lib:element && npm run lib:route",
     "lib:html": "cd ./lib/wcs-html && npm i && npm run build",
     "lib:route": "cd ./lib/wcs-route && npm i && npm run build",
     "lib:store": "cd ./lib/wcs-store && npm i && npm run build",
     "lib:element": "cd ./lib/wcs-element && npm i && npm run build",
-    "build": "npm i && rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
+    "build": "npm run lib && npm i && rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
     "example": "npm run lib && npm run build && cd ./example && npm i && npm start"
   },
   "repository": {
@@ -34,8 +37,10 @@
     "rollup": "^2.60.2",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
+    "shelljs": "^0.8.5",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "wcs-create": "file:cli/create"
   },
   "dependencies": {
     "wcs-element": "file:lib/wcs-element",

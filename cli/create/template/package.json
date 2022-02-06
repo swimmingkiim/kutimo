@@ -1,0 +1,45 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "types": "./build/types/index.d.ts",
+  "scripts": {
+    "type": "tsc -d --emitDeclarationOnly --declarationDir build/types",
+    "compile": "rollup --config -w",
+    "format": "npx eslint --fix -c .eslintrc.json ./src",
+    "start": "rm -rf ./build && npm run type && concurrently --kill-others \"npm run compile\" \"wds --node-resolve --watch --root-dir . --base-path / --app-index index.html --open\""
+  },
+  "keywords": [
+        "web-components-system",
+        "wcs"
+    ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-html": "^0.2.4",
+    "@rollup/plugin-image": "^2.1.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-strip": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
+    "@web/dev-server": "^0.1.28",
+    "autoprefixer": "^10.4.2",
+    "concurrently": "^6.4.0",
+    "cssnano": "^5.0.16",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-wcs": "file:../lib/eslint-plugin-wcs",
+    "postcss": "^8.4.5",
+    "prettier": "2.5.1",
+    "rollup": "^2.60.2",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "tailwindcss": "^3.0.18",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.5"
+  }
+}
