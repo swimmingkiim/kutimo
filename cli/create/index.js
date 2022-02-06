@@ -15,7 +15,7 @@ const devDependencies = [
     "cssnano@^5.0.16",
     "eslint@^8.8.0",
     "eslint-config-prettier@^8.3.0",
-    "eslint-plugin-wcs@file:../lib/eslint-plugin-wcs",
+    "eslint-plugin-kutimo@file:../lib/eslint-plugin-kutimo",
     "postcss@^8.4.5",
     "prettier@2.5.1",
     "rollup@^2.60.2",
@@ -28,7 +28,7 @@ const devDependencies = [
     "typescript@^4.5.5"
 ];
 const dependencies = [
-    "git@github.com:swimmingkiim/web-components-system.git",
+    "git@github.com:swimmingkiim/kutimo.git",
 ]
 
 module.exports = function createFromTemplate(projectName) {

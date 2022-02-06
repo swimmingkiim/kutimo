@@ -1,18 +1,18 @@
-import WCSBaseElement from "web-components-system";
-import WCSHeaderElement from "./components/wcs-header";
+import KutimoBaseElement from "kutimo";
+import KutimoHeaderElement from "./components/kutimo-header";
 
-export default class AppElement extends WCSBaseElement {
-    static tagName = "wcs-app";
-    wcsName = "Web Components System";
+export default class AppElement extends KutimoBaseElement {
+    static tagName = "kutimo-app";
+    kutimoName = "Web Components System";
     constructor() {
         super(AppElement.tagName);
-        this.import = [WCSHeaderElement];
+        this.import = [KutimoHeaderElement];
         this.init();
     }
 
     renderHTML(render: (strings: TemplateStringsArray, ...values: unknown[]) => void): void {
         render`
-            <wcs-header name="Welcome to ${this.wcsName}"></wcs-header>`;
+            <kutimo-header name="Welcome to ${this.kutimoName}"></kutimo-header>`;
 
     }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "eslint-plugin-kutimo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "kutimo",
+    "web component",
+    "eslint",
+    "plugin"
+  ],
+  "author": "swimmingkiim",
+  "license": "MIT"
+}

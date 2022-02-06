@@ -11,8 +11,8 @@
     "start": "rm -rf ./build && npm run type && concurrently --kill-others \"npm run compile\" \"wds --node-resolve --watch --root-dir . --base-path / --app-index index.html --open\""
   },
   "keywords": [
-        "web-components-system",
-        "wcs"
+        "kutimo",
+        "web component"
     ],
   "author": "",
   "license": "ISC",

@@ -1,4 +1,4 @@
-import WCSBaseElement, { Router, Store, RouteMap } from "web-components-system";
+import KutimoBaseElement, { Router, Store, RouteMap } from "kutimo";
 import AppElement from "./src/app";
 import "./index.css";
 
@@ -14,9 +14,9 @@ class CustomRouterElement extends Router.RouterElement {
     }
 }
 
-const customStore = new Store.WCSStore({ count: 0 });
-WCSBaseElement.storeRef = customStore;
-WCSBaseElement.registerTag(CustomRouterElement);
+const customStore = new Store.KutimoStore({ count: 0 });
+KutimoBaseElement.storeRef = customStore;
+KutimoBaseElement.registerTag(CustomRouterElement);
 
-document.body.querySelector("#wcs-root").innerHTML = "<wcs-router></wcs-router>";
+document.body.querySelector("#kutimo-root").innerHTML = "<kutimo-router></kutimo-router>";
 

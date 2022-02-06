@@ -1,0 +1,20 @@
+
+kutimo-header {
+    background-color: pink;
+    @apply text-center;
+}
+
+.header.wrapper {
+    @apply w-[50%];
+    @apply h-screen;
+    @apply mx-auto;
+    @apply py-[10%];
+}
+
+.header.logo {
+    @apply mx-auto;
+}
+
+.header.title {
+    @apply text-xl;
+}

@@ -1,11 +1,11 @@
-# Web Components System
+# Kutimo
 
 ## Requirements
 
 1. [x] `workflows` html -> template -> dom insert
 2. [x] `workflows`css import & tailwind css
 3. [x] `class` GlobalStore
-4. [x] `class` WCSBaseElement
+4. [x] `class` KutimoBaseElement
     1. [x] lifecycle hook `callback fun`
         1. [x] onStart
         2. [x] onBeforeRender
@@ -15,9 +15,9 @@
     3. [x] connect to global store
     4. [x] receive props
     5. [x] `static` registerTag() method * custom define call
-    6. [x] import other WCSBaseElement
+    6. [x] import other KutimoBaseElement
     7. [x] `on:` event directive
-5. [x] create `eslint-plugin-wcs`
+5. [x] create `eslint-plugin-kutimo`
 6. [x] `class` RouterElement
     1. [x] single page(index.html) routing
     2. [x] take RouteMap type blueprint object as prop
@@ -25,4 +25,4 @@
     4. [x] `static` goBack()
     5. [x] `static` refresh()
 7. [ ] command line tools
-    1. [x] wcs create
+    1. [x] kutimo create

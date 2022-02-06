@@ -13,7 +13,7 @@ export default {
         file: "./build/main.js",
         sourcemap: true,
         format: "umd",
-        name: "test",
+        name: "KutimoProject",
         plugins: [terser()]
     },
     plugins: [

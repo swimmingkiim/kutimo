@@ -1,35 +1,36 @@
 {
-  "name": "web-components-system",
+  "name": "kutimo",
   "version": "1.0.0",
   "type": "module",
   "description": "",
   "main": "./build/main.js",
   "types": "./build/types/index.d.ts",
   "bin": {
-    "wcs": "bin/wcs-cli.js"
+    "kutimo": "bin/kutimo-cli.js"
   },
   "scripts": {
     "lib": "npm run lib:html && npm run lib:store && npm run lib:element && npm run lib:route",
-    "lib:html": "cd ./lib/wcs-html && npm i && npm run build",
-    "lib:route": "cd ./lib/wcs-route && npm i && npm run build",
-    "lib:store": "cd ./lib/wcs-store && npm i && npm run build",
-    "lib:element": "cd ./lib/wcs-element && npm i && npm run build",
+    "lib:html": "cd lib/kutimo-html && npm i && npm run build",
+    "lib:route": "cd lib/kutimo-route && npm i && npm run build",
+    "lib:store": "cd lib/kutimo-store && npm i && npm run build",
+    "lib:element": "cd lib/kutimo-element && npm i && npm run build",
     "build": "npm run lib && npm i && rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
     "example": "npm run lib && npm run build && cd ./example && npm i && npm start"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/swimmingkiim/web-components-system.git"
+    "url": "git+https://github.com/swimmingkiim/kutimo.git"
   },
   "keywords": [
+    "kutimo",
     "web component"
   ],
   "author": "swimmingkiim",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/swimmingkiim/web-components-system/issues"
+    "url": "https://github.com/swimmingkiim/kutimo/issues"
   },
-  "homepage": "https://github.com/swimmingkiim/web-components-system#readme",
+  "homepage": "https://github.com/swimmingkiim/kutimo#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
@@ -40,12 +41,12 @@
     "shelljs": "^0.8.5",
     "tslib": "^2.3.1",
     "typescript": "^4.5.5",
-    "wcs-create": "file:cli/create"
+    "kutimo-create": "file:cli/create"
   },
   "dependencies": {
-    "wcs-element": "file:lib/wcs-element",
-    "wcs-html": "file:lib/wcs-html",
-    "wcs-route": "file:lib/wcs-route",
-    "wcs-store": "file:lib/wcs-store"
+    "kutimo-element": "file:lib/kutimo-element",
+    "kutimo-html": "file:lib/kutimo-html",
+    "kutimo-route": "file:lib/kutimo-route",
+    "kutimo-store": "file:lib/kutimo-store"
   }
 }

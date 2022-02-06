@@ -1,0 +1,28 @@
+{
+  "name": "kutimo-element",
+  "version": "1.0.0",
+  "description": "WCBaseElement for kutimo",
+  "main": "./build/main.js",
+  "types": "./build/types/index.d.ts",
+  "scripts": {
+    "build": "rm -rf ./build && rollup --config && tsc -d --emitDeclarationOnly --declarationDir ./build/types"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "kutimo-css": "file:../kutimo-css",
+    "kutimo-html": "file:../kutimo-html",
+    "kutimo-store": "file:../kutimo-store"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-strip": "^2.1.0",
+    "rollup": "^2.60.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.5"
+  }
+}

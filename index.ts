@@ -1,20 +1,20 @@
-import WCSBaseElement, {
-    WCSElementState,
-    WCSElementProps,
-    WCSBaseElementLifecycle
-} from "wcs-element";
-import RouterElement, { RouteDefinition, RouteMap, PageElement } from "wcs-route";
-import WCSStore, { WCSStoreData } from "wcs-store";
+import KutimoBaseElement, {
+    KutimoElementState,
+    KutimoElementProps,
+    KutimoBaseElementLifecycle
+} from "kutimo-element";
+import RouterElement, { RouteDefinition, RouteMap, PageElement } from "kutimo-route";
+import KutimoStore, { KutimoStoreData } from "kutimo-store";
 
-export { WCSElementState, WCSElementProps, WCSBaseElementLifecycle };
+export { KutimoElementState, KutimoElementProps, KutimoBaseElementLifecycle };
 export { RouteDefinition, RouteMap, PageElement };
-export { WCSStoreData };
+export { KutimoStoreData };
 
 export const Store = {
-    WCSStore,
+    KutimoStore,
 }
 
 export const Router = {
     RouterElement
 };
-export default WCSBaseElement;
+export default KutimoBaseElement;
