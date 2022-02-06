@@ -6,13 +6,13 @@
   "main": "./build/main.js",
   "types": "./build/types/index.d.ts",
   "scripts": {
-    "lib": "npm run lib:html && npm run lib:route && npm run lib:store && npm run lib:element",
-    "lib:html": "cd ./lib/wcs-html && npm run build",
-    "lib:route": "cd ./lib/wcs-route && npm run build",
-    "lib:store": "cd ./lib/wcs-store && npm run build",
-    "lib:element": "cd ./lib/wcs-element && npm run build",
-    "build": "rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
-    "example": "npm run lib && npm run build && cd ./example && npm start"
+    "lib": "npm run lib:html && npm run lib:store && npm run lib:element && npm run lib:route",
+    "lib:html": "cd ./lib/wcs-html && npm i && npm run build",
+    "lib:route": "cd ./lib/wcs-route && npm i && npm run build",
+    "lib:store": "cd ./lib/wcs-store && npm i && npm run build",
+    "lib:element": "cd ./lib/wcs-element && npm i && npm run build",
+    "build": "npm i && rollup --config && tsc -d --emitDeclarationOnly --declarationDir build/types",
+    "example": "npm run lib && npm run build && cd ./example && npm i && npm start"
   },
   "repository": {
     "type": "git",

@@ -6,7 +6,10 @@
     "sourceMap": true,
     "moduleResolution": "node",
     "target": "es6",
-    "outDir": "./build"
+    "outDir": "./build",
+    "typeRoots": [
+        "@types"
+    ]
   },
   "include": [
     "./index.ts"

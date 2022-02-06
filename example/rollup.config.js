@@ -5,6 +5,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
 import postcss from "rollup-plugin-postcss";
+import image from "@rollup/plugin-image";
 
 export default {
     input: "./index.ts",
@@ -31,6 +32,7 @@ export default {
                 path: "./postcss.config.js",
             }
         }),
+        image(),
         nodeResolve(),
         typescript({
             sourceMap: true

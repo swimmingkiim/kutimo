@@ -1,16 +1,10 @@
 import WCSBaseElement, { Router, Store, RouteMap } from "web-components-system";
 import AppElement from "./src/app";
-import SubTitleElement from "./src/components/sub-title";
 import "./index.css";
 
 const routeMap: RouteMap = {
     root: {
         pageElement: AppElement,
-        children: {
-            "/sub-title": {
-                pageElement: SubTitleElement,
-            }
-        }
     }
 };
 

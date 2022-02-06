@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "types": "./build/types/index.d.ts",
   "scripts": {
+    "type": "tsc -d --emitDeclarationOnly --declarationDir build/types",
     "compile": "rollup --config -w",
     "format": "npx eslint --fix -c .eslintrc.json ./src",
-    "start": "rm -rf ./build && concurrently --kill-others \"npm run compile\" \"wds --node-resolve --watch --root-dir . --base-path / --app-index index.html --open\""
+    "start": "rm -rf ./build && npm run type && concurrently --kill-others \"npm run compile\" \"wds --node-resolve --watch --root-dir . --base-path / --app-index index.html --open\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-html": "^0.2.4",
+    "@rollup/plugin-image": "^2.1.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-strip": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
