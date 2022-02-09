@@ -1,10 +1,19 @@
 import KutimoBaseElement, { Router, Store, RouteMap } from "kutimo";
 import AppElement from "./src/app";
 import "./index.css";
+import SubPageElement from "./src/sub-page";
 
 const routeMap: RouteMap = {
     root: {
         pageElement: AppElement,
+        children: {
+            "/:id": {
+                pageElement: SubPageElement,
+            },
+            "/sub": {
+                pageElement: SubPageElement
+            }
+        }
     }
 };
 

@@ -81,5 +81,7 @@ export default class RouterElement extends KutimoBaseElement {
      * because handler registration for custom event used in this method are implemented on RouterElement.onStart
      */
     static refresh(): void;
+    private _findMatchingRoute;
+    private _getCurrentElement;
 }
 export {};

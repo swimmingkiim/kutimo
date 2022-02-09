@@ -98,7 +98,7 @@ export default class RouterElement extends KutimoBaseElement {
         this.import = [RouterPageElement, ...getDependencies(this.routeMap.root, new Set())];
         this.init({
             location: this.location,
-            currentPageElementName: this.routeList[this.location.pathname]?.tagName ?? this.routeMap.root.pageElement.tagName,
+            currentPageElementName: this._getCurrentElement(this.location.pathname),
         });
     }
 
@@ -106,6 +106,7 @@ export default class RouterElement extends KutimoBaseElement {
         render`
       <kutimo-router-page
         path="${this.state.location.pathname ? this.state.location.pathname : window.location.pathname}"
+        schema="${this._findMatchingRoute(this.state.location.pathname)}"
         element-name="${this.state.currentPageElementName}"></kutimo-router-page>`;
     }
 
@@ -124,7 +125,7 @@ export default class RouterElement extends KutimoBaseElement {
                     ...this.state.location,
                     pathname: evt.detail
                 },
-                currentPageElementName: this.routeList[this.location.pathname]?.tagName ?? this.routeMap.root.pageElement.tagName,
+                currentPageElementName: this._getCurrentElement(this.location.pathname),
             });
         });
         // custom event handler for goBack method
@@ -135,7 +136,7 @@ export default class RouterElement extends KutimoBaseElement {
                     ...this.state.location,
                     pathname: this.location,
                 },
-                currentPageElementName: this.routeList[this.location.pathname]?.tagName ?? this.routeMap.root.pageElement.tagName,
+                currentPageElementName: this._getCurrentElement(this.location.pathname),
             });
         });
         // custom event handler for refresh method
@@ -146,7 +147,7 @@ export default class RouterElement extends KutimoBaseElement {
                     ...this.state.location,
                     pathname: this.location,
                 },
-                currentPageElementName: this.routeList[this.location.pathname]?.tagName ?? this.routeMap.root.pageElement.tagName,
+                currentPageElementName: this._getCurrentElement(this.location.pathname),
             });
         });
     }
@@ -190,6 +191,17 @@ export default class RouterElement extends KutimoBaseElement {
     static refresh() {
         const locationChangeEvent = new CustomEvent("historyrefresh");
         window.dispatchEvent(locationChangeEvent);
+    }
+
+    private  _findMatchingRoute(pathname: string) {
+      const paramRegex = /:[a-zA-Z]+/;
+      const replacedRegex = "[a-zA-Z0-9\-_]+";
+      return Object.keys(this.routeList).find((path) => path !== "/" && pathname.match(path.replace(paramRegex, replacedRegex)) !== null);
+    }
+
+    private _getCurrentElement(pathname: string) {
+      const matchingRoute = this._findMatchingRoute(pathname);
+      return this.routeList[matchingRoute]?.tagName ?? this.routeMap.root.pageElement.tagName;
     }
 }
 
