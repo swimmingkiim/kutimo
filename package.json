@@ -9,6 +9,7 @@
     "kutimo": "bin/kutimo-cli.js"
   },
   "scripts": {
+    "postinstall": "npm link",
     "lib": "npm run lib:html && npm run lib:store && npm run lib:element && npm run lib:route",
     "lib:html": "cd lib/kutimo-html && npm i && npm run build",
     "lib:route": "cd lib/kutimo-route && npm i && npm run build",

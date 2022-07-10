@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-import createFromTemplate from "kutimo-create";
+import createFromTemplate from "../cli/create/index.js";
 
 const action = process.argv[2];
 
